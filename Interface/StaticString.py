@@ -1,0 +1,9 @@
+title = "健康生活"
+textSiteSelect = "网站选择:"
+textClassSelect = "图片分类:"
+textSearchHint = "精准搜索:"
+textSearchButton = " 查找 "
+textDonateButton = "点开看看？"
+textNotOpen = "该功能暂未开放"
+textGetFailure = "获取失败"
+sleepTime = 1

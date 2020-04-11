@@ -13,15 +13,14 @@ import Interface.Alert as Alert
 import RequestNeededData.BrowserData as BrowserData
 
 
-class SearchThread(threading.Thread):
+class ClassGetThread(threading.Thread):
 
-    def __init__(self, content, canvas, frame, labelLength, labelDownload):
-        super(SearchThread, self).__init__()
+    def __init__(self, className, canvas, frame, labelDownload):
+        super(ClassGetThread, self).__init__()
         self.currentDownloadThread = None
-        self.content = content
+        self.className = className
         self.canvas = canvas
         self.frame = frame
-        self.labelLength = labelLength
         self.labelDownload = labelDownload
 
     def stopDownload(self):
@@ -42,8 +41,6 @@ class SearchThread(threading.Thread):
     def searchDataDisplay(self, result):
         if len(result) == 0:
             Alert.alert(StaticString.textSearchNotFound)
-        self.labelLength['text'] = StaticString.textSearchLengthPrefix + str(len(result)) \
-                                   + StaticString.textSearchLengthSuffix
         row = 0
         column = 0
         singleWidth = 200
@@ -75,6 +72,7 @@ class SearchThread(threading.Thread):
             if column == 4:
                 column = 0
                 row += 1
+
         if len(result) % 4 == 0:
             row -= 1
         self.canvas.pack()
@@ -82,5 +80,5 @@ class SearchThread(threading.Thread):
         self.canvas.config(scrollregion=(0, 0, 800, (row + 1) * 350))
 
     def run(self) -> None:
-        result = CurrentSite.searchData(self.content)
+        result = CurrentSite.searchFromClass(self.className)
         self.searchDataDisplay(result)

@@ -4,7 +4,7 @@ import Interface.MainWindow as MainWindow
 
 def main():
     window = MainWindow.MainWindow()
-    window.getClassAndSite()
+    window.getSite()
     tk.mainloop()
 
 
